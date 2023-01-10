@@ -104,8 +104,8 @@ def loadCoefficients():
 
     # note we also have to specify the type to retrieve other wise we only get a
     # FileNode object back instead of a matrix
-    camera_matrix = cv_file.getNode("camera_matrix").mat()
-    dist_matrix = cv_file.getNode("dist_coeff").mat()
+    camera_matrix = cv_file.getNode("K").mat()
+    dist_matrix = cv_file.getNode("D").mat()
 
     # Debug: print the values
     # print("camera_matrix : ", camera_matrix.tolist())
@@ -223,8 +223,7 @@ def track(matrix_coefficients, distortion_coefficients, df, frame_count, initial
             axis = np.float32([[-0.01, -0.01, 0], [-0.01, 0.01, 0], [0.01, -0.01, 0], [0.01, 0.01, 0]]).reshape(-1, 3)
             for i in range(0, len(ids)):  # Iterate in markers
                 # Estimate pose of each marker and return the values rvec and tvec---different from camera coefficients
-                rvec, tvec, markerPoints = aruco.estimatePoseSingleMarkers(corners[i], 0.06, matrix_coefficients,
-                                                                           distortion_coefficients)
+                rvec, tvec, markerPoints = aruco.estimatePoseSingleMarkers(corners[i], 0.04, matrix_coefficients, distortion_coefficients)
                 #40mm = 0.04m
                 #pull out the roation of the marker and the tvec is the center of the four corners
 

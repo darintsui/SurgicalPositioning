@@ -67,13 +67,13 @@ def load_coefficients(path):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Camera calibration')
-    parser.add_argument('--image_dir', type=str, required=True, help='image directory path', default='CalibrationImages/')
-    parser.add_argument('--image_format', type=str, required=True,  help='image format, png/jpg', default='png')
-    parser.add_argument('--prefix', type=str, required=True, help='image prefix', default='IMG')
-    parser.add_argument('--square_size', type=float, required=False, help='chessboard square size', default=0.02675)
-    parser.add_argument('--width', type=int, required=False, help='chessboard width size, default is 9', default=9)
-    parser.add_argument('--height', type=int, required=False, help='chessboard height size, default is 6', default=6)
-    parser.add_argument('--save_file', type=str, required=True, help='YML file to save calibration matrices', default='calibrationCoefficients.yaml')
+    parser.add_argument('--image_dir', nargs='?', type=str, help='image directory path', default='CalibrationImages')
+    parser.add_argument('--image_format', nargs='?', type=str, help='image format, png/jpg', default='PNG')
+    parser.add_argument('--prefix', nargs='?', type=str, help='image prefix', default='IMG_')
+    parser.add_argument('--square_size', nargs='?', type=float, help='chessboard square size', default=0.024)
+    parser.add_argument('--width', nargs='?', type=int, help='chessboard width size, default is 9', default=9)
+    parser.add_argument('--height', nargs='?', type=int, help='chessboard height size, default is 6', default=6)
+    parser.add_argument('--save_file', nargs='?', type=str, help='YML file to save calibration matrices', default='calibrationCoefficients.yaml')
 
     args = parser.parse_args()
     ret, mtx, dist, rvecs, tvecs = calibrate(args.image_dir, args.prefix, args.image_format, args.square_size, args.width, args.height)
