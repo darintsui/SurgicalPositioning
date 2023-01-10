@@ -13,7 +13,7 @@ This repository contains the Talke Biomedical Device Lab's surgical position tra
 
 2. **marker_tracking.py** : Marker tracking implementation using the provided video **Ref4_S3.mp4**.
 
-        python marker_tracking.py
+        python marker_tracking.py --coefficients 1 --firstMarker 0 --secondMarker 10
 
 ### Other
 3. **kalman.ipymb** : Post-processing Kalman filter implementation on generated csvs. **marker_tracking.py** provides an online implementation of Kalman filtering.
